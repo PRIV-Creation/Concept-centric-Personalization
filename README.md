@@ -1,7 +1,9 @@
 ## Concept-centric Personalization
 The official code of "Concept-centric Personalization with Large-scale Diffusion Priors".
 
-The training code and models will be released later. We here provide the code for null-text UNet and GCFG.
+![img.pdf](assets/sample.png)
+
+🌟 **The training code and models will be released later. We here provide the code for null-text UNet and GCFG.**
 
 ### 1. Code for Null-text UNet
 
