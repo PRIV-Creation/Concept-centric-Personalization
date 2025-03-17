@@ -1,9 +1,7 @@
-## Concept-centric Personalization
-The official code of "Concept-centric Personalization with Large-scale Diffusion Priors".
+## In-domain Generation with Diffusion Models
+The official code of "Image is All You Need to Empower Large-scale Diffusion Models for In-Domain Generation".
 
-![img.pdf](assets/sample.png)
-
-🌟 **The training code and models will be released later. We here provide the code for null-text UNet and GCFG.**
+![img.pdf](assets/main.png)
 
 ### 1. Code for Null-text UNet
 
@@ -19,9 +17,7 @@ python prepare_nulltext_checkpoint.py
 python nulltext_unet.py
 ```
 
-### 2. GCFG
-
-#### 2.1 Concept-centric Generation with GCFG
+### 2. In-domain Generation with Multi-Guidance
 
 See `generation_with_nulltext_model.py` for details.
 
@@ -59,29 +55,8 @@ if do_classifier_free_guidance:
                  guidance_scale_ori * (noise_pred_text_ori - noise_pred_uncond)
 ```
 
-where ```self.unet0``` is SD1.5 for unconditional guidance, ```self.unet``` is concept-centric diffusion model for concept guidance, and ```self.unet1``` is SD1.5 or customized SD for control guidance.
+where ```self.unet0``` is SD1.5 for unconditional guidance, ```self.unet``` is in-domain diffusion model for domain guidance, and ```self.unet1``` is SD1.5 or customized SD for control guidance.
 
-#### 2.2 Generic Generation with GCFG
-
-See `gcfg.py` for details.
-
-The core code are as follows:
-
-```bash
-if do_classifier_free_guidance:
-    noise_pred = (1 - sum(weight)) * noise_pred_uncond
-    for w, p in zip(weight, noise_pred_text):
-        noise_pred += w * p[None]
-```
-
-### Citation
-```bibtex
-@misc{cao2023conceptcentric,
-      title={Concept-centric Personalization with Large-scale Diffusion Priors}, 
-      author={Pu Cao and Lu Yang and Feng Zhou and Tianrui Huang and Qing Song},
-      year={2023},
-      eprint={2312.08195},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
+### TODO
+- [ ] Updating training codes in [UniDiffusion](https://github.com/PRIV-Creation/UniDiffusion).
+- [ ] Results on SDXL and SD3.
